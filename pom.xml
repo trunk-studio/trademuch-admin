@@ -8,14 +8,14 @@
         <version>1.2.5.RELEASE</version>
     </parent>
 
-    <groupId>org.lightadmin</groupId>
-    <artifactId>lightadmin-springboot</artifactId>
+    <groupId>uk.co.trademuch</groupId>
+    <artifactId>trademuch-admin</artifactId>
 
     <!--  Please change packaging to "war" for deploying as a web module to servlet container  -->
     <packaging>jar</packaging>
-    <name>LightAdmin Spring Boot</name>
+    <name>trademuch-admint</name>
     <version>1.2.0.BUILD-SNAPSHOT</version>
-    <description>Spring Boot Integration Sample</description>
+    <description>trademuch-admin</description>
 
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
@@ -23,7 +23,7 @@
 
         <tomcat.version>8.0.15</tomcat.version>
 
-        <lightadmin.version>1.2.0.RC1</lightadmin.version>
+        <lightadmin.version>1.1.0.BUILD-SNAPSHOT</lightadmin.version>
     </properties>
 
     <dependencies>

@@ -1,0 +1,14 @@
+target
+.idea
+*.iml
+.classpath
+.project
+.settings
+.tmp
+.merge_file*
+.sass-cache
+.DS_Store
+*.swp
+.gradle
+build
+/bin/

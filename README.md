@@ -5,3 +5,7 @@
 ## admin dashboard
 
 `localhost:8080/admin`
+
+## configuration
+
+`resources/application.properties`

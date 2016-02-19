@@ -2,6 +2,7 @@ package org.lightadmin.boot.domain;
 
 
 import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.annotation.Nullable;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 
 @Entity
@@ -19,6 +21,9 @@ public class User implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(columnDefinition="char(36)")
+    private UUID uuid;
 
     @Column
     @NotBlank

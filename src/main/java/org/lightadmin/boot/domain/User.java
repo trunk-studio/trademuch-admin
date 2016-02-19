@@ -126,4 +126,14 @@ public class User implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+
 }

@@ -2,12 +2,9 @@ package org.lightadmin.boot.domain;
 
 
 import org.hibernate.annotations.GenerationTime;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.annotation.Nullable;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -45,6 +42,12 @@ public class User implements Serializable {
     @Column
     private Boolean isFirstLogin;
 
+    @Column
+    private Double latitude;
+
+    @Column
+    private Double longitude;
+
     @Column(insertable=false, updatable=false, columnDefinition="datetime")
     @org.hibernate.annotations.Generated(value= GenerationTime.INSERT)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -54,6 +57,30 @@ public class User implements Serializable {
     @org.hibernate.annotations.Generated(value=GenerationTime.ALWAYS)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    public Boolean getFirstLogin() {
+        return isFirstLogin;
+    }
+
+    public void setFirstLogin(Boolean firstLogin) {
+        isFirstLogin = firstLogin;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
 
     public String getUsername() {
         return username;

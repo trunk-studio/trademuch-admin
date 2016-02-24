@@ -33,9 +33,9 @@ public class Post implements Serializable {
     @Column
     private Date endDate;
 
-
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "userId")
     private User user;
 
     @Column(insertable=false, updatable=false, columnDefinition="datetime")
@@ -47,8 +47,6 @@ public class Post implements Serializable {
     @org.hibernate.annotations.Generated(value=GenerationTime.ALWAYS)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date updatedAt;
-
-
 
     public Long getId() {
         return id;

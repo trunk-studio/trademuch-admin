@@ -2,9 +2,11 @@ package org.lightadmin.boot.domain;
 
 
 import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -26,7 +28,16 @@ public class User implements Serializable {
     @NotBlank
     private String username;
 
-    @Column
+    @Column(name = "full_name")
+    private String fullName;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(unique = true)
     private String email;
 
     @Column
@@ -39,95 +50,26 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column
-    private Boolean isFirstLogin;
+    @Column(name = "is_first_login", columnDefinition = "tinyint(1) default 1")
+    @NotNull
+    private Integer isFirstLogin;
 
-    @Column
-    private Double latitude;
-
-    @Column
-    private Double longitude;
-
-    @Column(insertable=false, updatable=false, columnDefinition="datetime")
-    @org.hibernate.annotations.Generated(value= GenerationTime.INSERT)
+    @Column(name = "created_at", insertable = false, updatable = false, columnDefinition = "datetime")
+    @org.hibernate.annotations.Generated(value = GenerationTime.INSERT)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(insertable=false, updatable=false, columnDefinition="datetime")
-    @org.hibernate.annotations.Generated(value=GenerationTime.ALWAYS)
+    @Column(name = "updated_at", insertable = false, updatable = false, columnDefinition = "datetime")
+    @org.hibernate.annotations.Generated(value = GenerationTime.ALWAYS)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    public Boolean getFirstLogin() {
-        return isFirstLogin;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setFirstLogin(Boolean firstLogin) {
-        isFirstLogin = firstLogin;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public Boolean getIsFirstLogin() {
-        return isFirstLogin;
-    }
-
-    public void setIsFirstLogin(Boolean isFirstLogin) {
-        this.isFirstLogin = isFirstLogin;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public Date getCreatedAt() {
@@ -138,20 +80,76 @@ public class User implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public Integer getIsFirstLogin() {
+        return isFirstLogin;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setIsFirstLogin(Integer isFirstLogin) {
+        this.isFirstLogin = isFirstLogin;
     }
 
-    public Long getId() {
-        return id;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public UUID getUuid() {
@@ -162,5 +160,12 @@ public class User implements Serializable {
         this.uuid = uuid;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

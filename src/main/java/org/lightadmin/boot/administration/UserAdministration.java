@@ -20,6 +20,9 @@ public class UserAdministration extends AdministrationConfiguration<User> {
         return fragmentBuilder
                 .field("uuid").caption("UUID")
                 .field("username").caption("User Name")
+                .field("fullName").caption("Full Name")
+                .field("firstName").caption("First Name")
+                .field("lastName").caption("Last Name")
                 .field("email").caption("Email")
                 .field("telephone").caption("Telephone")
                 .field("age").caption("Age")
@@ -30,8 +33,10 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                         EnumElement.element(2, "female")
                 )
                 .field("isFirstLogin").caption("First Login")
-                .field("latitude").caption("Latitude")
-                .field("longitude").caption("Longitude")
+                .enumeration(
+                        EnumElement.element(0, "No"),
+                        EnumElement.element(1, "Yes")
+                )
                 .field("createdAt").caption("Created At")
                 .field("updatedAt").caption("Update At")
                 .build();

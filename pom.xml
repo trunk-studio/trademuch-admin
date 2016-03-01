@@ -12,9 +12,9 @@
     <artifactId>trademuch-admin</artifactId>
 
     <!--  Please change packaging to "war" for deploying as a web module to servlet container  -->
-    <packaging>jar</packaging>
-    <name>trademuch-admint</name>
-    <version>1.2.0.BUILD-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>trademuch-admin</name>
+    <version>1.1.0.BUILD-SNAPSHOT</version>
     <description>trademuch-admin</description>
 
     <properties>
@@ -23,7 +23,7 @@
 
         <tomcat.version>8.0.15</tomcat.version>
 
-        <lightadmin.version>1.1.0.BUILD-SNAPSHOT</lightadmin.version>
+        <lightadmin.version>1.2.0.RC1</lightadmin.version>
     </properties>
 
     <dependencies>

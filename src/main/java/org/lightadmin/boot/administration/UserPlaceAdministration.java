@@ -5,9 +5,11 @@ import org.lightadmin.api.config.builder.EntityMetadataConfigurationUnitBuilder;
 import org.lightadmin.api.config.builder.PersistentFieldSetConfigurationUnitBuilder;
 import org.lightadmin.api.config.unit.EntityMetadataConfigurationUnit;
 import org.lightadmin.api.config.unit.FieldSetConfigurationUnit;
-import org.lightadmin.boot.domain.PostPlace;
+import org.lightadmin.api.config.utils.EnumElement;
+import org.lightadmin.boot.domain.User;
+import org.lightadmin.boot.domain.UserPlace;
 
-public class PostPlaceAdministration extends AdministrationConfiguration<PostPlace> {
+public class UserPlaceAdministration extends AdministrationConfiguration<UserPlace> {
 
     @Override
     public EntityMetadataConfigurationUnit configuration(EntityMetadataConfigurationUnitBuilder configurationBuilder) {
@@ -18,10 +20,10 @@ public class PostPlaceAdministration extends AdministrationConfiguration<PostPla
     public FieldSetConfigurationUnit formView(final PersistentFieldSetConfigurationUnitBuilder fragmentBuilder) {
 
         return fragmentBuilder
-                .field("postId").caption("Post")
+                .field("userId").caption("User")
                 .field("placeId").caption("Place")
                 .field("createdAt").caption("Created At")
-                .field("updatedAt").caption("Updated At")
+                .field("updatedAt").caption("Update At")
                 .build();
     }
 }

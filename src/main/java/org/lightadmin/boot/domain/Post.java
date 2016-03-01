@@ -52,7 +52,8 @@ public class Post implements Serializable {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "post_ibfk_1"))
+
     private User userId;
 
     public Integer getId() {

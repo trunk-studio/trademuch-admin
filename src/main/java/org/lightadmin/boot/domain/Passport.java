@@ -2,14 +2,16 @@ package org.lightadmin.boot.domain;
 
 
 import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-
 @Entity
 @Table(name = "passport")
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class Passport implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,7 +50,7 @@ public class Passport implements Serializable {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "passport_ibfk_1"))
     private User userId;
 
     public Integer getId() {

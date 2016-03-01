@@ -15,16 +15,17 @@ public class PostPlace implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    @GeneratedValue
     private PostPlacePK id;
 
     @ManyToOne
-    @JoinColumn(name = "post_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "post_id", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "post_place_ibfk_1"), insertable = false, updatable = false)
     @NotNull
     private Post postId;
 
     @ManyToOne
-    @JoinColumn(name = "place_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "place_id", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "post_place_ibfk_2"), insertable = false, updatable = false)
     @NotNull
     private Place placeId;
 

@@ -12,46 +12,63 @@ import java.util.UUID;
 
 
 @Entity
+@Table(name = "post")
 public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
-    private Long id;
+    @Column(columnDefinition = "int(11)")
+    private Integer id;
 
-    @Column(columnDefinition="char(36)")
+    @Column(columnDefinition="char(36) BINARY CHARACTER SET utf8 COLLATE utf8_bin")
     private UUID uuid;
 
     @Column
     @NotBlank
     private String title;
 
-    @Column
+    @Column(name = "start_date", columnDefinition = "datetime")
+    @NotNull
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date startDate;
 
-    @Column
+    @Column(name = "end_date", columnDefinition = "datetime")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date endDate;
 
+    @Column(name = "cover_image")
+    private String coverImage;
 
-    @NotNull
-    @ManyToOne
-    private User user;
-
-    @Column(insertable=false, updatable=false, columnDefinition="datetime")
-    @org.hibernate.annotations.Generated(value= GenerationTime.INSERT)
+    @Column(name = "created_at", insertable = false, updatable = false, columnDefinition = "datetime")
+    @org.hibernate.annotations.Generated(value = GenerationTime.INSERT)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(insertable=false, updatable=false, columnDefinition="datetime")
-    @org.hibernate.annotations.Generated(value=GenerationTime.ALWAYS)
+    @Column(name = "updated_at", insertable = false, updatable = false, columnDefinition = "datetime")
+    @org.hibernate.annotations.Generated(value = GenerationTime.ALWAYS)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User userId;
 
-
-    public Long getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getTitle() {
@@ -78,12 +95,12 @@ public class Post implements Serializable {
         this.endDate = endDate;
     }
 
-    public User getUser() {
-        return user;
+    public String getCoverImage() {
+        return coverImage;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
     }
 
     public Date getCreatedAt() {
@@ -102,17 +119,11 @@ public class Post implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public User getUserId() {
+        return userId;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-
 }

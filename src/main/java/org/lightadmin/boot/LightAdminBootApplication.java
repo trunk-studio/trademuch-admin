@@ -1,10 +1,5 @@
 package org.lightadmin.boot;
 
-import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
@@ -23,6 +18,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 
 @Configuration
 @ComponentScan
@@ -52,13 +52,13 @@ public class LightAdminBootApplication extends SpringBootServletInitializer {
                         .basePackage("org.lightadmin.boot.administration")
                         .baseUrl("/admin")
                         .security(true)
-                        .backToSiteUrl("http://lightadmin.org");
+                        .backToSiteUrl("http://trademuch.co.uk");
 
                 new LightAdminWebApplicationInitializer().onStartup(servletContext);
             }
         };
     }
-	
+
 	/* https://github.com/spring-projects/spring-boot/issues/2825#issuecomment-93479758 */
     @Bean
     public EmbeddedServletContainerCustomizer servletContainerCustomizer() {

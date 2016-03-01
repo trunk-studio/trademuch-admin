@@ -2,10 +2,8 @@ package org.lightadmin.boot.domain;
 
 
 import org.hibernate.annotations.GenerationTime;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.annotation.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -14,46 +12,74 @@ import java.util.UUID;
 
 
 @Entity
+@Table(name = "user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
-    private Long id;
+    @Column(columnDefinition = "int(11)")
+    private Integer id;
 
-    @Column(columnDefinition="char(36)")
+    @Column(columnDefinition="char(36) BINARY CHARACTER SET utf8 COLLATE utf8_bin")
     private UUID uuid;
 
     @Column
     @NotBlank
     private String username;
 
-    @Column
+    @Column(name = "full_name")
+    private String fullName;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(unique = true)
     private String email;
 
     @Column
     private String telephone;
 
-    @Column
+    @Column(columnDefinition = "int(11) DEFAULT 0")
     private Integer age;
 
-    @Column
+    @Column(columnDefinition = "ENUM('none','male','female') DEFAULT 'none'")
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column
-    private Boolean isFirstLogin;
+    @Column(name = "is_first_login", columnDefinition = "tinyint(1) DEFAULT 1")
+    @NotNull
+    private Integer isFirstLogin;
 
-    @Column(insertable=false, updatable=false, columnDefinition="datetime")
-    @org.hibernate.annotations.Generated(value= GenerationTime.INSERT)
+    @Column(name = "created_at", insertable = false, updatable = false, columnDefinition = "datetime")
+    @org.hibernate.annotations.Generated(value = GenerationTime.INSERT)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(insertable=false, updatable=false, columnDefinition="datetime")
-    @org.hibernate.annotations.Generated(value=GenerationTime.ALWAYS)
+    @Column(name = "updated_at", insertable = false, updatable = false, columnDefinition = "datetime")
+    @org.hibernate.annotations.Generated(value = GenerationTime.ALWAYS)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
 
     public String getUsername() {
         return username;
@@ -61,6 +87,30 @@ public class User implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -95,11 +145,11 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public Boolean getIsFirstLogin() {
+    public Integer getIsFirstLogin() {
         return isFirstLogin;
     }
 
-    public void setIsFirstLogin(Boolean isFirstLogin) {
+    public void setIsFirstLogin(Integer isFirstLogin) {
         this.isFirstLogin = isFirstLogin;
     }
 
@@ -118,22 +168,4 @@ public class User implements Serializable {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-
 }
